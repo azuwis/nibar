@@ -1,12 +1,12 @@
 export default {
   colors: {
-    fg: "rgba(255,255,255,0.8)",
+    fg: "rgba(255,255,255,0.75)",
     dim: "rgba(255,255,255,0.6)",
-    bg: "#1c1c1c",
+    bg: "#1e1f21",
     red: "#ff8700",
     accent: "#5fafaf"
   },
-  fontSize: "11px",
-  lineHeight: "20px",
-  fontFamily: "'Iosevka Custom', 'SF Mono', monospace"
+  fontSize: "13px",
+  lineHeight: "24px",
+  fontFamily: "'JetBrains Mono', 'SF Mono', monospace"
 }

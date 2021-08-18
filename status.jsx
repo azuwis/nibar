@@ -11,7 +11,7 @@ const style = {
   display: "grid",
   padding: "0 12px",
   gridAutoFlow: "column",
-  gridGap: "20px",
+  gridGap: "12px",
   position: "fixed",
   overflow: "hidden",
   right: "0px",
