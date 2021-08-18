@@ -3,7 +3,6 @@ import styles from "./styles.jsx";
 const render = ({ output }) => {
   let charging = output.charging;
   let percentage = output.percentage;
-  let remaining = output.remaining;
   return (
     <div>
       <div
