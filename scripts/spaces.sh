@@ -1,20 +1,11 @@
 #!/bin/sh
 
-PATH=/usr/local/bin/:$PATH
+SPACES=$(/run/current-system/sw/bin/yabai -m query --spaces)
+DISPLAYS=$(/run/current-system/sw/bin/yabai -m query --displays)
 
-# Check if yabai exists
-if ! [ -x "$(command -v yabai)" ]; then
-  echo "{\"error\":\"yabai binary not found\"}"
-  exit 1
-fi
-
-SPACES=$(yabai -m query --spaces)
-DISPLAYS=$(yabai -m query --displays)
-
-echo $(cat <<-EOF
+cat <<-EOF
 {
   "spaces": $SPACES,
   "displays": $DISPLAYS
 }
 EOF
-)
