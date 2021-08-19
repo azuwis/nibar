@@ -28,8 +28,6 @@ then
   WIFI_STATUS="inactive"
 fi
 
-DND="$(defaults read com.apple.controlcenter "NSStatusItem Visible DoNotDisturb")"
-
 cat <<-EOF
 {
   "datetime": {
@@ -45,7 +43,6 @@ cat <<-EOF
   "wifi": {
     "status": "$WIFI_STATUS",
     "ssid": "$WIFI_SSID"
-  },
-  "dnd": $DND
+  }
 }
 EOF
