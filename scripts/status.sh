@@ -15,8 +15,8 @@ then
 fi
 
 LOAD_AVERAGE="$(sysctl -n vm.loadavg)"
-LOAD_AVERAGE="${LOAD_AVERAGE% * * *}"
-LOAD_AVERAGE="${LOAD_AVERAGE#* }"
+LOAD_AVERAGE="${LOAD_AVERAGE% * *}"
+LOAD_AVERAGE="${LOAD_AVERAGE#* * }"
 
 WIFI="$(networksetup -getairportnetwork en0)"
 WIFI_SSID="${WIFI#*: }"
