@@ -1,6 +1,6 @@
 export default {
   colors: {
-    fg: "rgba(255,255,255,0.75)",
+    fg: "rgba(255,255,255,0.7)",
     dim: "rgba(255,255,255,0.6)",
     bg: "#1e1f21",
     red: "#ff8700",
