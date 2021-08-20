@@ -27,11 +27,7 @@ export const command = "./nibar/scripts/spaces.sh";
 export const render = ({ output }, ...args) => {
   const data = parse(output);
   if (typeof data === "undefined") {
-    return (
-      <div style={style}>
-        <Error msg="Error: unknown script output" side="left" />
-      </div>
-    );
+    return null;
   }
   if (typeof data.error !== "undefined") {
     return (
