@@ -1,29 +1,27 @@
-#!/bin/sh
+#!/bin/bash
 
 DATE_TIME="$(date +"%a %m-%d %H:%M")"
 
 BATTERY="$(pmset -g batt)"
 BATTERY_PERCENTAGE="${BATTERY%\%*}"
 BATTERY_PERCENTAGE="${BATTERY_PERCENTAGE##*	}"
-BATTERY_STATUS="${BATTERY#*\'}"
-BATTERY_STATUS="${BATTERY_STATUS%% *}"
-
+read -r _ _ _ BATTERY_STATUS _ <<< "$BATTERY"
 BATTERY_CHARGING="false"
-if [ "$BATTERY_STATUS" = "AC" ]
+if [ "$BATTERY_STATUS" = "'AC" ]
 then
   BATTERY_CHARGING="true"
 fi
 
 LOAD_AVERAGE="$(sysctl -n vm.loadavg)"
-LOAD_AVERAGE="${LOAD_AVERAGE% * *}"
-LOAD_AVERAGE="${LOAD_AVERAGE#* * }"
+read -r _ _ LOAD_AVERAGE _ <<< "$LOAD_AVERAGE"
 
 WIFI="$(networksetup -getairportnetwork en0)"
-WIFI_SSID="${WIFI#*: }"
+read -r _ _ TEST WIFI_SSID <<< "$WIFI"
 
-WIFI_STATUS="active"
-if [ "$WIFI_SSID" = "$WIFI" ]
+if [ "$TEST" = "Network:" ]
 then
+  WIFI_STATUS="active"
+else
   WIFI_SSID=""
   WIFI_STATUS="inactive"
 fi
