@@ -25,9 +25,9 @@ const renderWindow = (app, focused, visible) => {
   }
   return (
     <div style={contentStyle}>
-      {focused ? "[" : <span>&nbsp;</span> }
+      <span>&nbsp;</span>
       {app}
-      {focused ? "]" : <span>&nbsp;</span> }
+      <span>&nbsp;</span>
     </div>
   );
 };
