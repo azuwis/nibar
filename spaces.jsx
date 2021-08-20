@@ -2,6 +2,7 @@ import Desktop from "./lib/Desktop.jsx";
 import Error from "./lib/Error.jsx";
 import parse from "./lib/parse.jsx";
 import styles from "./lib/styles.jsx";
+import { run } from "uebersicht";
 
 const style = {
   padding: "0 8px",
@@ -19,6 +20,7 @@ const style = {
   fontWeight: styles.fontWeight
 };
 
+export const init = (dispatch) => { run("./nibar/scripts/init.sh"); };
 export const refreshFrequency = false;
 export const command = "./nibar/scripts/spaces.sh";
 
