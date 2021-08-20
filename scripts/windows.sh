@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 WINDOWS=$(/run/current-system/sw/bin/yabai -m query --windows --space mouse)
 
