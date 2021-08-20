@@ -26,6 +26,10 @@ else
   WIFI_STATUS="inactive"
 fi
 
+NETWORK="$(netstat -ibn -I en0)"
+NETWORK="${NETWORK##*en0}"
+read -r _ _ _ _ _ IBYTES _ _ OBYTES _ <<< "${NETWORK}"
+
 cat <<-EOF
 {
   "datetime": {
@@ -41,6 +45,10 @@ cat <<-EOF
   "wifi": {
     "status": "$WIFI_STATUS",
     "ssid": "$WIFI_SSID"
+  },
+  "network": {
+    "ibytes": $IBYTES,
+    "obytes": $OBYTES
   }
 }
 EOF

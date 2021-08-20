@@ -2,6 +2,7 @@ import DateTime from "./lib/DateTime.jsx";
 import Battery from "./lib/Battery.jsx";
 import Cpu from "./lib/Cpu.jsx";
 import Wifi from "./lib/Wifi.jsx";
+import Network from "./lib/Network.jsx";
 import Error from "./lib/Error.jsx";
 import parse from "./lib/parse.jsx";
 import styles from "./lib/styles.jsx";
@@ -26,8 +27,7 @@ export const refreshFrequency = 10000;
 
 export const command = "./nibar/scripts/status.sh";
 
-export const render = ({ output }) => {
-  const data = parse(output);
+export const render = ({ data }) => {
   if (typeof data === "undefined") {
     return (
       <div style={style}>
@@ -37,12 +37,27 @@ export const render = ({ output }) => {
   }
   return (
     <div style={style}>
+      <Network output={data.network} />
       <Cpu output={data.cpu} />
       <Wifi output={data.wifi} />
       <Battery output={data.battery} />
       <DateTime output={data.datetime} />
     </div>
   );
+};
+
+export const updateState = (event, previousState) => {
+  let data = parse(event.output);
+  if (data?.network) {
+    data.network.ispeed = 0;
+    data.network.ospeed = 0;
+    if (previousState?.data) {
+      const time = refreshFrequency / 1000;
+      data.network.ispeed = (data.network.ibytes - previousState.data.network.ibytes) / time;
+      data.network.ospeed = (data.network.obytes - previousState.data.network.obytes) / time;
+    }
+  }
+  return { data };
 };
 
 export default null;
